@@ -1,0 +1,36 @@
+<head>
+    <title>GitHub Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="form-group">
+    <label for="usr">Github User Name</label>
+    <input type="text" class="form-control" id="usr" style="width:20%;"><br/>
+    <button type="button" class="btn btn-primary" id="btn" name="btn" onClick = "javascript:fnSubmit();">Submit</button>
+</div>
+<script>
+       function fnSubmit(){
+            var userName = $('#usr').val();
+            if(userName.length == 0){
+                alert("Please enter user name");
+            }else{
+                $('#usr').val('');
+                $.ajax({
+                    type: 'POST',
+                    timeout: 10000,
+                    contentType: "application/json; charset=utf-8",
+                    url:'/insert/'+userName,
+                    success: function(data){
+                        alert("Successfully saved");
+                    },
+                    error: function(){
+                        alert("Failed to save");
+                    }
+                });
+            }
+       }
+</script>
+</body>
+</html>
